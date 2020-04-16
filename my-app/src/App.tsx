@@ -1,13 +1,15 @@
-import React from 'react'
-import Hello from './Hello'
-
+import React from "react";
+import Hello from "./Hello";
 
 function App() {
+  const [show, setShow] = React.useState(true);
+
   return (
     <div>
-      <Hello message="tet"/>
+      <button onClick={() => setShow(!show)}>show</button>
+      {show && <Hello message="tet" />}
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
