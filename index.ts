@@ -82,3 +82,45 @@ human_c.humanGender = "new value"; // * read only
 // * I think i am pretty good at it .
 // * static can be a value or a function
 
+// -> interface and inplements 
+// ! only the property is optional, but the function is not
+interface Radio {
+    switchVideo(): string;
+    test: () => string
+}
+
+interface Battery {
+  checkBattery(): string
+}
+
+// -> implement one interface 
+class Car implements Radio {
+  switchVideo(){
+    return 'hello'
+  }
+}
+
+// -> implement two interface 
+class CellPhone implements Radio, Battery {
+  switchVideo(){
+    return "hello" 
+  }
+  checkBattery(){
+    return 'hello'
+  }
+}
+
+// -> extands of the interface 
+interface RadioWithBattery extends Battery, Radio {
+
+}
+
+class AdvancedCard implements RadioWithBattery {
+  checkBattery(){
+    return '1'
+  }
+  switchVideo(){
+    return "2"
+  }
+}
+
