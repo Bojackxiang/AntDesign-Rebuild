@@ -1,13 +1,16 @@
 import React from "react";
-import Hello from "./Hello";
+import { useMouseHook } from "./useMousePsx";
 
 function App() {
   const [show, setShow] = React.useState(true);
+  
+  // retrieve the value from the customized hook
+  const position = useMouseHook()
 
   return (
     <div>
+      x{position.x} y: {position.y}
       <button onClick={() => setShow(!show)}>show</button>
-      {show && <Hello message="tet" />}
     </div>
   );
 }
