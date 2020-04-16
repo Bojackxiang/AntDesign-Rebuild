@@ -1,27 +1,31 @@
 import React from "react";
 import { useImageHook } from "./useUrlLoader";
+import Button from "./Button";
 
-interface IShowResultProps {
-  message: string;
-  status: string;
+
+// !!be careful: the [key: string] means the computed key,
+interface IThemeProps {
+  [key: string]: { color: string; background: string };
 }
 
+const theme: IThemeProps = {
+  light: {
+    color: "red",
+    background: "lightblue",
+  },
+  dark: {
+    color: "blue",
+    background: "green",
+  },
+};
+
+export const ThemeContext = React.createContext(theme.light);
+
 function App() {
-  const [show, setShow] = React.useState(true);
-  const [data, loading] = useImageHook(
-    'https://dog.ceo/api/breeds/image/random',
-    )
-  const dogData  = data as IShowResultProps
-
   return (
-    <div>
-        
-       {loading ? 'is loading' : 'finished'}
-
-       {
-         !loading && <img src={dogData.message}/>
-       }
-    </div>
+    <ThemeContext.Provider value={theme.dark}>
+      <Button/>
+    </ThemeContext.Provider>
   );
 }
 
