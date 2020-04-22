@@ -9,10 +9,10 @@ function App() {
   const result = x == "123" ? "true" : "false";
   return (
     <div>
-      <Menu defaultIndex={0}>
-        <MenuItem>test</MenuItem>
-        <MenuItem>test</MenuItem>
-        <MenuItem>test</MenuItem>
+      <Menu defaultIndex={0} onSelect={(index) => {console.log(index)}}>
+        <MenuItem index={0}>test</MenuItem>
+        <MenuItem index={1}>test</MenuItem>
+        <MenuItem index={2}>test</MenuItem>
       </Menu>
       <Button
         btnType={ButtonType.Danger}
