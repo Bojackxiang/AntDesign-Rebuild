@@ -1,11 +1,19 @@
 import React from "react";
 import Button, { ButtonType, BtnSize } from "./Components/Buttons/Button";
+import Menu from "./Components/Menu/Menu";
+import MenuItem from "./Components/Menu/MenuItem";
+
 
 function App() {
   const x = "123";
   const result = x == "123" ? "true" : "false";
   return (
     <div>
+      <Menu defaultIndex={0}>
+        <MenuItem>test</MenuItem>
+        <MenuItem>test</MenuItem>
+        <MenuItem>test</MenuItem>
+      </Menu>
       <Button
         btnType={ButtonType.Danger}
         size={BtnSize.large}

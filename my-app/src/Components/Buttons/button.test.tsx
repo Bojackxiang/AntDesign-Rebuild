@@ -43,7 +43,7 @@ describe("test button component", () => {
 /**
  * Note
  ************************************************
- * render => 拿到整个element
+ * render => 拿到整个element 
  * element => 根据 wrapper 里面 （其实已经生成了一个dom节点）来找东西
  *
  ************************************************
