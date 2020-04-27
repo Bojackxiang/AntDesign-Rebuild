@@ -3,8 +3,8 @@ import classNames from 'classnames'
 
 import {MenuContext} from './Menu'
 
-interface MenuItemProps {
-    index: number;  // * 如果加了问好，类型就会是 number | undefined
+export interface MenuItemProps {
+    index?: string;  // * 如果加了问好，类型就会是 number | undefined
     disabled?: boolean; 
     classes?: string;
     style?: React.CSSProperties;
@@ -23,7 +23,7 @@ const MenuItem:React.FC<MenuItemProps> = (props) => {
 
     const _handleClick = () => {
         if(context.onSelect && !disabled) {
-            context.onSelect(props.index)
+            context.onSelect(props.index as string)
         }
     }
 
@@ -34,4 +34,5 @@ const MenuItem:React.FC<MenuItemProps> = (props) => {
     )
 }
 
+MenuItem.displayName = 'MenuItem' // -> 
 export default MenuItem
