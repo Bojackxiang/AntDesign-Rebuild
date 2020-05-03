@@ -13,7 +13,7 @@ const Upload: React.FC<UploadProps> = (props) => {
   const { action, beforeUpload, onProgress, onSuccess, onError } = props;
 
   const inputRef = useRef<HTMLInputElement>(null);
-  const [Percentage, setPercentage] = useState<Number>(0)
+  const [Percentage, setPercentage] = useState<Number>(0);
 
   const _onClickHandler = () => {
     if (inputRef.current) {
@@ -34,11 +34,11 @@ const Upload: React.FC<UploadProps> = (props) => {
 
   const uploadFile = (file: FileList) => {
     const postFiles = Array.from(file);
-    const readyToPostFiles = postFiles[0]
-    if(beforeUpload){
+    const readyToPostFiles = postFiles[0];
+    if (beforeUpload) {
       beforeUpload(readyToPostFiles);
     }
-    post(readyToPostFiles)
+    post(readyToPostFiles);
   };
 
   const post = (file: File) => {
@@ -50,11 +50,16 @@ const Upload: React.FC<UploadProps> = (props) => {
         onUploadProgress: (e) => {
           console.log(`Percentage: ${(e.loaded * 100) / e.total} loaded ...`);
           setPercentage((prevState) => {
-            const newPercentage = e.loaded * 100 / e.total
-            console.log('prevState is ', prevState, 'current is ', newPercentage);
+            const newPercentage = (e.loaded * 100) / e.total;
+            console.log(
+              "prevState is ",
+              prevState,
+              "current is ",
+              newPercentage
+            );
             return newPercentage;
-          })
-        }
+          });
+        },
       })
       .then((resp) => {
         if (onSuccess) {
@@ -68,6 +73,33 @@ const Upload: React.FC<UploadProps> = (props) => {
   return (
     <div>
       <p>uploading percentage {Percentage}</p>
+      <div
+        style={{
+          border: "1px solid black",
+          height: 20,
+          width: 300,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          position: 'relative'
+        }}
+      >
+        <div
+          style={{
+            height: 18,
+            backgroundColor: "pink",
+            width: `${Percentage}%`,
+            position: "absolute",
+            left: 0, 
+            top: 0, 
+            transition:'width .6s ease'
+          }}
+        ></div>
+        <p style={{zIndex: 100}}>
+        {Percentage}
+        </p>
+        
+      </div>
       <button onClick={_onClickHandler}>uploading</button>
       <input
         style={{ display: "none" }}
