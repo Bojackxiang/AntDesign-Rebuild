@@ -10,9 +10,14 @@ function App() {
   return (
     <div>
       <Input />
-      <Uploading 
-      action="https://jsonplaceholder.typicode.com/posts/"
-       />
+      <Uploading
+        action="https://jsonplaceholder.typicode.com/posts/"
+        beforeUpload={(file) => {
+          console.log(file.size);
+          if (file.size / 1024> 100) return true
+          return false
+        }}
+      />
     </div>
   );
 }
